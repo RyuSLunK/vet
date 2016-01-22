@@ -1,0 +1,19 @@
+<h1>Appointment Information</h1>
+<table>
+	<tr>
+		<th>Date of Visit</th>
+		<th>Pet Name</th>
+		<th>Owner Name</th>
+		<th>Doctor Name</th>
+		<th>Reason for Visit</th>
+	</tr>
+	<tr>
+		<td><%= @appointment.date_of_visit.strftime("%m/%d/%Y") %></td>
+		<td><%= @pet.name %></td>
+		<td><%= @customer.name %></td>
+		<td><%= @doctor.name %></td>
+		<td><%= @appointment.reason_for_visit %></td>
+	</tr>
+</table>
+<%= link_to "Return to Home", '/home/index' %>
+<%= link_to "New Search", customers_path %>

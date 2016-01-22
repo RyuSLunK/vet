@@ -1,0 +1,12 @@
+<h1>Customer Lookup</h1>
+Please provide the following information to view your appointment details:
+
+<%= form_tag({controller: "customers", action: "search"}, method: "get") do %>
+<%= label_tag(:phone, "Phone Number: ") %>
+<%= text_field_tag(:phone) %>
+<br/>
+<%= label_tag(:email, "Email Address: ") %>
+<%= text_field_tag(:email) %>
+<br/>
+<%= submit_tag("Search") %>
+<% end %>

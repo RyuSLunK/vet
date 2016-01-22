@@ -1,0 +1,50 @@
+<%= form_for @pet do |f| %>
+	
+	<% if @pet.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@pet.errors.count, "error") %> prohibited
+        this pet from being saved:
+      </h2>
+      <ul>
+        <% @pet.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+	<p>
+		<%= f.label :name %><br>
+		<%= f.text_field :name %>
+	</p>
+	
+	<p>
+		<%= f.label :type %><br>
+		<%= select_tag(:type,options_for_select([['Dog','Dog'],['Cat','Cat'],['Bird','Bird']])) %>
+	</p>
+	
+	<p>
+		<%= f.label :breed %><br>
+		<%= f.text_field :breed %>
+	</p>
+	
+	<p>
+		<%= f.label :age %><br>
+		<%= f.number_field :age %>
+	</p>
+	
+	<p>
+		<%= f.label :weight %><br>
+		<%= f.number_field :weight %>
+	</p>
+	
+	<p>
+		<%= f.label :date_of_last_visit %><br>
+		<%= f.date_field :date_of_last_visit %>
+	</p>
+	
+	<p>
+		<%= f.submit %>
+	</p>
+	
+<% end %>

@@ -1,0 +1,62 @@
+
+<%= form_for @appointment do |f| %>
+	<% if @appointment.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@appointment.errors.count, "error") %> prohibited
+        this appointment from being saved:
+      </h2>
+      <ul>
+        <% @appointment.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+	
+	<p>
+		<%= f.label :date_of_visit %><br>
+		<%= f.date_field :date_of_visit %>
+	</p>
+	
+	<p>
+		<!-- pet stuff goes here -->
+		<label for="pet_name">Pet's Name</label><br />
+		<input type="text" name="pet_name" value=""/>
+	</p>
+	
+	<p>
+		<!-- customer stuff goes here -->
+		<label for="customer_name">Customer's Name</label><br />
+		<input type="text" name="customer_name" />
+		<br/>
+		<label for="customer_phonee">Customer's Phone</label><br />
+		<input type="text" name="customer_phone" />
+		<br/>
+		<label for="customer_email">Customer's Email</label><br />
+		<input type="text" name="customer_email" />
+	</p>
+		<!-- doctor stuff goes here -->
+		<p>
+		<%= f.label :doctor_id %><br>
+		<% @doc_arry = [['Choose Doctor','']]%>
+		<% Doctor.all.each do |doc| %>
+			<% @doc_arry.push([doc.name,doc.id]) %>
+		<% end %>
+		<%= select_tag(:doctor_id, options_for_select(@doc_arry)) %>
+		</p>
+	<p>
+		<%= f.label :requires_reminder %><br>
+		<%= f.check_box :requires_reminder %>
+	</p>
+	
+	<p>
+		<%= f.label :reason_for_visit %><br>
+		<%= f.text_area :reason_for_visit %>
+	</p>
+		
+	<p>
+		<%= f.submit %>
+	</p>
+	
+<% end %>

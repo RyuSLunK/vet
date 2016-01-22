@@ -1,0 +1,30 @@
+<h1>Appointment List</h1>
+<% if @appointments.count != 0 %>
+<table>
+	<tr>
+		<th>Date of Visit</th>
+		<th>Doctor</th>
+		<th>Pet</th>
+		<th>Customer</th>
+		<th>Requires Reminder</th>
+		<th>Reason for Visit</th>
+		<th colspan="2"></th>
+	</tr>
+<% @appointments.each do |d| %>
+	<tr>
+		<td><%= d.date_of_visit.strftime('%m-%d-%Y') %></td>
+		<td><%= Doctor.find(d.doctor_id).name %></td>
+		<td><%= Pet.find(d.pet_id).name %></td>
+		<td><%= Customer.find(d.customer_id).name %></td>
+		<td><%= d.requires_reminder %></td>
+		<td><%= d.reason_for_visit %></td>
+		<td><%= link_to 'Edit', edit_appointment_path(d) %></td>
+		<td><%= link_to 'Destroy', appointment_path(d),
+			method: :delete,
+			data: {confirm: 'Are you sure?' } %></td>
+	</tr>
+<% end %>
+</table>
+<% end %>
+<%= link_to 'New Appointment', new_appointment_path %>
+<a href="/home/index">Back to Home</a>

@@ -1,0 +1,23 @@
+<h1>Schedule for Dr. <%= @doctor.name %></h1>
+<% if @appointments.count != 0 %>
+<table>
+	<tr>
+		<th>Date of Visit</th>
+		<th>Pet</th>
+		<th>Customer</th>
+		<th>Reason for Visit</th>
+		<th colspan="1"></th>
+	</tr>
+<% @appointments.each do |d| %>
+	<tr>
+		
+		<td><%= d.date_of_visit.strftime('%m-%d-%Y') %></td>
+		<td><%= Pet.find(d.pet_id).name %></td>
+		<td><%= Customer.find(d.customer_id).name %></td>
+		<td><%= d.reason_for_visit %></td>
+		<td><%= link_to 'Start Appointment', edit_pet_path(Pet.find(d.pet_id))%></td>
+	</tr>
+<% end %>
+</table>
+<% end %>
+<%= link_to 'Back to All Doctors', doctors_path %>

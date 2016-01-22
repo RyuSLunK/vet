@@ -1,0 +1,3 @@
+<h1>Pet Information</h1>
+<%= render 'form' %>
+<%= link_to 'Back to Appointments', doctor_path(Doctor.find(Appointment.where(pet_id: @pet.id).take.doctor_id)) %>

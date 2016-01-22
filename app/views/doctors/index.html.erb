@@ -1,0 +1,38 @@
+<h1>Doctors List</h1>
+<% if @doctors.count != 0 %>
+<table>
+	<tr>
+		<th colspan="1"></th>
+		<th>Name</th>
+		<th>Address</th>
+		<th>City</th>
+		<th>State</th>
+		<th>Zip</th>
+		<th>School Received Degree From</th>
+		<th>Years in Practice</th>
+		<th colspan="2"></th>
+	</tr>
+<% @doctors.each do |d| %>
+	<tr>
+		<td>
+		<% if Appointment.where(doctor_id: d.id).count >= 1 %>
+		<%= link_to 'View Schedule', doctor_path(d) %>
+		<% end %>
+		</td>
+		<td><%= d.name %></td>
+		<td><%= d.address %></td>
+		<td><%= d.city %></td>
+		<td><%= d.state %></td>
+		<td><%= d.zip %></td>
+		<td><%= d.school %></td>
+		<td><%= d.years_in_practice %></td>
+		<td><%= link_to 'Edit', edit_doctor_path(d) %></td>
+		<td><%= link_to 'Destroy', doctor_path(d),
+			method: :delete,
+			data: {confirm: 'Are you sure?' } %></td>
+	</tr>
+<% end %>
+</table>
+<% end %>
+<%= link_to 'New Doctor', new_doctor_path %>
+<a href="/home/index">Back to Home</a>
